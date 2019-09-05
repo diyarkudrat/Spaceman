@@ -1,5 +1,8 @@
 import random
 
+
+letters_guessed = []
+
 def load_word():
     '''
     A function that reads a text file of words and randomly selects one to use as the secret word
@@ -68,6 +71,7 @@ def is_guess_in_word(guess, secret_word):
     '''
 
     if guess in secret_word:
+        print('Letter is in word!')
         return True
     else:
         return False
@@ -85,6 +89,49 @@ def spaceman(secret_word):
     Args:
       secret_word (string): the secret word to guess.
     '''
+
+    print("Welcome to Spaceman")
+    print('The secret word contains: _ amount of letters')
+    print('You have 7 incorrect guesses, Please enter one letter only per round')
+
+    num_guess = True
+    guess_count = 0
+
+    while num_guess:
+        user_guess = input('Enter guess: ')
+        is_letter_guessed = is_guess_in_word(user_guess, secret_word)
+        #If guessed letter is in secret word, fill the letter in necessary blank
+        if user_guess in is_letter_guessed:
+            get_guessed_word(user_guess, secret_word)
+            won = is_word_guessed(secret_word,letter_guessed)
+            #game tells user if he won when word is guessed
+                if won == True:
+                    print('Congrats on Winning!')
+                    num_guess = False
+                else:
+                    num_guess = True
+        #If user guessed a letter again, game will tell you that you used the letter and try again
+        if user_guess in letters_guessed:
+            print('Already guessed. Try another letter')
+        elif len(user_guess) <= 1:
+            letters_guessed.append(user_guess)
+        #More than 7 guesses, program will stop
+        if guess_count >= 7:
+            print('Sorry! You lost:(')
+            num_guess = False
+        #Tell user how many guesses he/she has
+        else:
+            guesses_left = 7 - guess_count
+            print('You have ' + str(guesses_left) + 'guesses remaining.')
+
+
+
+
+
+
+
+
+
 
 
     #TODO: show the player information about the game according to the project spec
@@ -104,6 +151,6 @@ def spaceman(secret_word):
 
 #These function calls that will start the game
 secret_word = load_word()
-spaceman(load_word())
+spaceman(secret_word)
 
 '[/;lp]'
