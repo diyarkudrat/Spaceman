@@ -49,11 +49,15 @@ def get_guessed_word(secret_word, letters_guessed):
     '''
 
     string = ""
-    for i in secret_word:
+    word = list(secret_word)
+
+    for i in word:
         if i in letters_guessed:
             string += i
         else:
             string += "_"
+
+    print(string)
 
     #TODO: Loop through the letters in secret word and build a string that shows the letters that have been guessed correctly so far that are saved in letters_guessed and underscores for the letters that have not been guessed yet
 
@@ -98,31 +102,69 @@ def spaceman(secret_word):
     guess_count = 0
 
     while num_guess:
-        user_guess = input('Enter guess: ')
-        is_letter_guessed = is_guess_in_word(user_guess, secret_word)
-        #If guessed letter is in secret word, fill the letter in necessary blank
-        if user_guess in is_letter_guessed:
-            get_guessed_word(user_guess, secret_word)
-            won = is_word_guessed(secret_word,letter_guessed)
-            #game tells user if he won when word is guessed
-                if won == True:
-                    print('Congrats on Winning!')
-                    num_guess = False
-                else:
-                    num_guess = True
-        #If user guessed a letter again, game will tell you that you used the letter and try again
-        if user_guess in letters_guessed:
-            print('Already guessed. Try another letter')
-        elif len(user_guess) <= 1:
+        user_guess = input('Enter guess here:')
+
+        #Is guess in word
+        if len(user_guess) <= 1:
             letters_guessed.append(user_guess)
-        #More than 7 guesses, program will stop
+            guess = is_guess_in_word(user_guess, secret_word)
+            if guess == True:
+                get_guessed_word(secret_word, letters_guessed)
+            else:
+                print('Letter not in word:(')
+                guess_count += 1
+        elif user_guess in letters_guessed:
+            print('Already guessed letter')
+            guess_count += 1
+        won = is_word_guessed(secret_word, letters_guessed)
+
         if guess_count >= 7:
-            print('Sorry! You lost:(')
+            print('Sorry! You lost! The word was: ' + secret_word)
             num_guess = False
-        #Tell user how many guesses he/she has
         else:
-            guesses_left = 7 - guess_count
-            print('You have ' + str(guesses_left) + 'guesses remaining.')
+            num_guess_left = 7 - guess_count
+            print('You have ' + str(num_guess_left) + " guesses remaining!")
+
+        #What happens when user wins
+        if won == True:
+            print('Congrats! You won!')
+            num_guess = False
+        else:
+            num_guess = True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        # user_guess = input('Enter guess: ')
+        # is_letter_guessed = is_guess_in_word(user_guess, secret_word)
+        # #If guessed letter is in secret word, fill the letter in necessary blank
+        # if is_letter_guessed == True:
+        #     get_guessed_word(user_guess, secret_word)
+        # #If user guessed a letter again, game will tell you that you used the letter and try again
+        # if user_guess in letters_guessed:
+        #     print('Already guessed. Try another letter')
+        # elif len(user_guess) <= 1:
+        #     letters_guessed.append(user_guess)
+        # #More than 7 guesses, program will stop
+        # if guess_count >= 7:
+        #     print('Sorry! You lost:(')
+        #     num_guess = False
+        # #Tell user how many guesses he/she has
+        # else:
+        #     guesses_left = 7 - guess_count
+        #     print('You have ' + str(guesses_left) + 'guesses remaining.')
 
 
 
