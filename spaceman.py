@@ -95,7 +95,6 @@ def spaceman(secret_word):
       secret_word (string): the secret word to guess.
     '''
 
-    print("Welcome to Spaceman")
     print('The secret word contains:' + str(len(secret_word)) + ' amount of letters')
     print('You have 7 incorrect guesses to guess the word, Please enter one letter only per round')
 
@@ -113,7 +112,7 @@ def spaceman(secret_word):
         elif len(user_guess) <= 1 and user_guess.isalpha() == True:
             letters_guessed.append(user_guess)
         else:
-            print('Try again')
+            print('Only input one letter. Try again')
 
         guess = is_guess_in_word(user_guess, secret_word)
         if guess == True:
@@ -158,7 +157,22 @@ def spaceman(secret_word):
 
 
 #These function calls that will start the game
-secret_word = load_word()
-spaceman(secret_word)
+# secret_word = load_word()
+# spaceman(secret_word)
+
+game = True
+
+#keeps game in loop. After game is over, you can play another game.
+while game:
+    print('Welcome to Spaceman!')
+    print(' ')
+    menu = input('If you wanna play, press P! If you want to quit, press Q')
+    if menu == 'p' or menu == 'P':
+        secret_word = load_word()
+        spaceman(secret_word)
+    elif menu == 'q' or menu == 'Q':
+        game = False
+    else:
+        print('Improper input')
 
 '[/;lp]'
