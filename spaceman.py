@@ -27,13 +27,14 @@ def is_word_guessed(secret_word, letters_guessed):
     Returns:
         bool: True only if all the letters of secret_word are in letters_guessed, False otherwise
     '''
-
+    count = 0
     for i in secret_word:
-        #(alternative)if letters_guessed not in secret_word:
-        if i not in letters_guessed:
-            return False
-        else:
+        if i in letters_guessed:
+            count += 1
+        if count == len(list(secret_word)):
             return True
+        else:
+            return False
 
     # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
     pass
@@ -95,8 +96,8 @@ def spaceman(secret_word):
     '''
 
     print("Welcome to Spaceman")
-    print('The secret word contains: _ amount of letters')
-    print('You have 7 incorrect guesses, Please enter one letter only per round')
+    print('The secret word contains:' + str(len(secret_word)) + ' amount of letters')
+    print('You have 7 incorrect guesses to guess the word, Please enter one letter only per round')
 
     num_guess = True
     guess_count = 0
@@ -105,26 +106,23 @@ def spaceman(secret_word):
         user_guess = input('Enter guess here:')
 
         #Is guess in word
-        if len(user_guess) <= 1:
-            letters_guessed.append(user_guess)
-            guess = is_guess_in_word(user_guess, secret_word)
-            if guess == True:
-                get_guessed_word(secret_word, letters_guessed)
-            else:
-                print('Letter not in word:(')
-                guess_count += 1
-        elif user_guess in letters_guessed:
+        if user_guess in letters_guessed:
             print('Already guessed letter')
-            guess_count += 1
-        won = is_word_guessed(secret_word, letters_guessed)
+            guess_count = guess_count
 
-        if guess_count >= 7:
-            print('Sorry! You lost! The word was: ' + secret_word)
-            num_guess = False
+        elif len(user_guess) <= 1 and user_guess.isalpha() == True:
+            letters_guessed.append(user_guess)
         else:
-            num_guess_left = 7 - guess_count
-            print('You have ' + str(num_guess_left) + " guesses remaining!")
+            print('Try again')
 
+        guess = is_guess_in_word(user_guess, secret_word)
+        if guess == True:
+            get_guessed_word(secret_word, letters_guessed)
+        else:
+            print('Letter not in word:(')
+            guess_count += 1
+
+        won = is_word_guessed(secret_word, letters_guessed)
         #What happens when user wins
         if won == True:
             print('Congrats! You won!')
@@ -132,46 +130,14 @@ def spaceman(secret_word):
         else:
             num_guess = True
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        # user_guess = input('Enter guess: ')
-        # is_letter_guessed = is_guess_in_word(user_guess, secret_word)
-        # #If guessed letter is in secret word, fill the letter in necessary blank
-        # if is_letter_guessed == True:
-        #     get_guessed_word(user_guess, secret_word)
-        # #If user guessed a letter again, game will tell you that you used the letter and try again
-        # if user_guess in letters_guessed:
-        #     print('Already guessed. Try another letter')
-        # elif len(user_guess) <= 1:
-        #     letters_guessed.append(user_guess)
-        # #More than 7 guesses, program will stop
-        # if guess_count >= 7:
-        #     print('Sorry! You lost:(')
-        #     num_guess = False
-        # #Tell user how many guesses he/she has
-        # else:
-        #     guesses_left = 7 - guess_count
-        #     print('You have ' + str(guesses_left) + 'guesses remaining.')
-
-
-
-
-
-
-
+        #If user has more than 7 incorrect guesses, game over
+        if guess_count == 7:
+            print('Sorry! You lost! The word was: ' + secret_word)
+            num_guess = False
+        else:
+            #prints how many guesses left for user
+            num_guess_left = 7 - guess_count
+            print('You have ' + str(num_guess_left) + " guesses remaining!")
 
 
 
