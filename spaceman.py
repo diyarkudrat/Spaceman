@@ -116,7 +116,7 @@ def spaceman(secret_word):
 
         guess = is_guess_in_word(user_guess, secret_word)
         if guess == True:
-            get_guessed_word(secret_word, letters_guessed)
+            print(get_guessed_word(secret_word, letters_guessed))
         else:
             print('Letter not in word:(')
             print((get_guessed_word(secret_word, letters_guessed)))
