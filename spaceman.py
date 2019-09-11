@@ -109,11 +109,14 @@ def spaceman(secret_word):
             print('Already guessed letter')
             guess_count = guess_count
 
+        #If user inputs one letter, add to list
         elif len(user_guess) <= 1 and user_guess.isalpha() == True:
             letters_guessed.append(user_guess)
         else:
             print('Only input one letter. Try again')
 
+        #If letter is in word, fill it in
+        #If not in  word, add to guess count 
         guess = is_guess_in_word(user_guess, secret_word)
         if guess == True:
             print(get_guessed_word(secret_word, letters_guessed))
