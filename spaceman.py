@@ -31,10 +31,10 @@ def is_word_guessed(secret_word, letters_guessed):
     for i in secret_word:
         if i in letters_guessed:
             count += 1
-        if count == len(list(secret_word)):
-            return True
-        else:
-            return False
+    if count == len(list(secret_word)):
+        return True
+    else:
+        return False
 
     # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
     pass
@@ -104,6 +104,8 @@ def spaceman(secret_word):
     while num_guess:
         user_guess = input('Enter guess here:')
 
+        print(secret_word)
+
         #Is guess in word
         if user_guess in letters_guessed:
             print('Already guessed letter')
@@ -116,18 +118,17 @@ def spaceman(secret_word):
             print('Only input one letter. Try again')
 
         #If letter is in word, fill it in
-        #If not in  word, add to guess count 
+        #If not in  word, add to guess count
         guess = is_guess_in_word(user_guess, secret_word)
         if guess == True:
             print(get_guessed_word(secret_word, letters_guessed))
         else:
-            print('Letter not in word:(')
-            print((get_guessed_word(secret_word, letters_guessed)))
+            print('Letter not in word')
+            print(get_guessed_word(secret_word, letters_guessed))
             guess_count += 1
 
-        won = is_word_guessed(secret_word, letters_guessed)
         #What happens when user wins
-        if won == True:
+        if is_word_guessed(secret_word, letters_guessed) == True:
             print('Congrats! You won!')
             num_guess = False
         else:
@@ -163,6 +164,14 @@ def spaceman(secret_word):
 #These function calls that will start the game
 # secret_word = load_word()
 # spaceman(secret_word)
+#
+# game = True
+#
+# while game:
+#     menu = input('Press P')
+#     if menu == 'p':
+#         secret_word = load_word()
+#         spaceman(secret_word)
 
 game = True
 
@@ -171,6 +180,7 @@ while game:
     print('Welcome to Spaceman!')
     print(' ')
     menu = input('If you wanna play, press P! If you want to quit, press Q')
+    letters_guessed.clear()
     if menu == 'p' or menu == 'P':
         secret_word = load_word()
         spaceman(secret_word)
@@ -178,5 +188,5 @@ while game:
         game = False
     else:
         print('Improper input')
-
-'[/;lp]'
+#
+# '[/;lp]'
