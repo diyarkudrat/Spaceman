@@ -85,6 +85,36 @@ def is_guess_in_word(guess, secret_word):
 
     pass
 
+def test_is_word_guessed():
+     test_word = 'fantasy'
+     test_guess = 'q'
+     test_function = is_word_guessed(test_word, test_guess)
+
+     assert test_function == False
+
+     # assert test_function == True
+
+def test_get_guessed_word():
+    test_word = 'fantasy'
+    test_list = ('d','t','x','y','s')
+    test_function = get_guessed_word(test_word, test_list)
+
+    assert test_function == '___t_sy'
+
+    # assert test_function == 'f__t__y'
+
+def test_is_guess_in_word():
+    test_word = 'fantasy'
+    test_guess = 'x'
+    test_function = is_guess_in_word(test_word, test_guess)
+
+    assert test_function == False
+
+    # assert test_function == True
+
+
+
+
 
 
 
@@ -104,7 +134,7 @@ def spaceman(secret_word):
     while num_guess:
         user_guess = input('Enter guess here:')
 
-        print(secret_word)
+        # print(secret_word)
 
         #Is guess in word
         if user_guess in letters_guessed:
@@ -173,8 +203,12 @@ def spaceman(secret_word):
 #         secret_word = load_word()
 #         spaceman(secret_word)
 
-game = True
 
+test_is_word_guessed()
+test_get_guessed_word()
+test_is_guess_in_word()
+
+game = True
 #keeps game in loop. After game is over, you can play another game.
 while game:
     print('Welcome to Spaceman!')
