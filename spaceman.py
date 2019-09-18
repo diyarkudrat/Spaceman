@@ -203,24 +203,32 @@ def spaceman(secret_word):
 #         secret_word = load_word()
 #         spaceman(secret_word)
 
-# When running pytest, I used pytes -s command
+
+
+def play_game():
+    game = True
+    #keeps game in loop. After game is over, you can play another game.
+    while game:
+        print('Welcome to Spaceman!')
+        print(' ')
+        menu = input('If you wanna play, press P! If you want to quit, press Q')
+        letters_guessed.clear()
+        if menu == 'p' or menu == 'P':
+            secret_word = load_word()
+            spaceman(secret_word)
+        elif menu == 'q' or menu == 'Q':
+            game = False
+        else:
+            print('Improper input')
+
+
 test_is_word_guessed()
 test_get_guessed_word()
 test_is_guess_in_word()
 
-game = True
-#keeps game in loop. After game is over, you can play another game.
-while game:
-    print('Welcome to Spaceman!')
-    print(' ')
-    menu = input('If you wanna play, press P! If you want to quit, press Q')
-    letters_guessed.clear()
-    if menu == 'p' or menu == 'P':
-        secret_word = load_word()
-        spaceman(secret_word)
-    elif menu == 'q' or menu == 'Q':
-        game = False
-    else:
-        print('Improper input')
+if __name__ == '__main__':
+    play_game()
+
+
 #
 # '[/;lp]'
