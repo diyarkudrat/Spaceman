@@ -203,7 +203,7 @@ def spaceman(secret_word):
 #         secret_word = load_word()
 #         spaceman(secret_word)
 
-
+# When running pytest, I used pytes -s command
 test_is_word_guessed()
 test_get_guessed_word()
 test_is_guess_in_word()
