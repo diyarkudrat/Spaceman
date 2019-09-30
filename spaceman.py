@@ -27,17 +27,24 @@ def is_word_guessed(secret_word, letters_guessed):
     Returns:
         bool: True only if all the letters of secret_word are in letters_guessed, False otherwise
     '''
-    count = 0
-    for i in secret_word:
-        if i in letters_guessed:
-            count += 1
-    if count == len(list(secret_word)):
+    # count = 0
+    # for i in secret_word:
+    #     if i in letters_guessed:
+    #         count += 1
+    # if count == len(list(secret_word)):
+    #     return True
+    # else:
+    #     return False
+
+    # return letters_guessed in secret_word
+
+    if secret_word in letters_guessed:
         return True
     else:
         return False
 
-    # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
-    pass
+
+
 
 def get_guessed_word(secret_word, letters_guessed):
     '''
@@ -58,11 +65,8 @@ def get_guessed_word(secret_word, letters_guessed):
         else:
             string += "_"
 
-    return string;
+    return string
 
-    #TODO: Loop through the letters in secret word and build a string that shows the letters that have been guessed correctly so far that are saved in letters_guessed and underscores for the letters that have not been guessed yet
-
-    pass
 
 
 def is_guess_in_word(guess, secret_word):
@@ -81,9 +85,7 @@ def is_guess_in_word(guess, secret_word):
     else:
         return False
 
-    #TODO: check if the letter guess is in the secret word
 
-    pass
 
 def test_is_word_guessed():
      test_word = 'fantasy'
@@ -173,18 +175,6 @@ def spaceman(secret_word):
             num_guess_left = 7 - guess_count
             print('You have ' + str(num_guess_left) + " guesses remaining!")
 
-
-
-
-    #TODO: show the player information about the game according to the project spec
-
-    #TODO: Ask the player to guess one letter per round and check that it is only one letter
-
-    #TODO: Check if the guessed letter is in the secret or not and give the player feedback
-
-    #TODO: show the guessed word so far
-
-    #TODO: check if the game has been won or lost
 
 
 
